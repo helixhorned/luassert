@@ -6,7 +6,7 @@ local posix = require("posix")
 local assert = require"luassert"
 --]]
 --[[
--- NOTE: bug goes away (or becomes very rare)
+-- NOTE: bug goes away (or becomes *very* rare; not yet observed IIRC)
 local orig_assert = assert
 local rawequal=rawequal
 local assert = setmetatable({

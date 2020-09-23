@@ -18,6 +18,13 @@ end
 local check = assert
 
 -- Baked fd_set (x86_64)
+--
+-- NOTE: 'man 2 select' says:
+--  "The Linux kernel imposes no fixed limit, but the glibc implementation makes fd_set a
+--   fixed-size type, with FD_SETSIZE defined as 1024, and the FD_*() macros operating
+--   according to that limit."
+--
+-- (64 * 16 == 1024)
 ffi.cdef[[
 typedef
 struct { uint64_t v_[16]; }
