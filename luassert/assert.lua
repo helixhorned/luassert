@@ -1,4 +1,9 @@
-local s = require 'say'
+
+--local s = require 'say'
+-- ^^ vs. vv THIS seems to have something to do with it (more frequent with above; rare with below)
+local s = string.format
+-- ^ actually, besides being less frequent, not yet observed to have *different* numbers
+
 local astate = require 'luassert.state'
 local util = require 'luassert.util'
 local unpack = util.unpack
