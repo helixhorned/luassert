@@ -31,10 +31,6 @@ struct { uint64_t v_[16]; }
 fd_set;
 
 struct timeval;
-int select(int nfds, fd_set *readfds, fd_set *writefds,
-           fd_set *exceptfds, struct timeval *timeout);
-
-int open(const char *pathname, int flags);
 ]]
 
 local uint32_t = ffi.typeof("uint32_t")
