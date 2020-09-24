@@ -1,0 +1,64 @@
+B   dd0f09f95 (HEAD -> v2.1, origin/v2.1) Another fix for lua_yield() from C hook.
+    518e8cbeb Merge branch 'master' into v2.1
+    881d02d31 (origin/v2.0, origin/master, origin/HEAD) Mark CONV as non-weak, to prevent elimination of its side-effect.
+    dd5032ed8 Fix lua_yield() from C hook.
+    cc44642cf Merge branch 'master' into v2.1
+    412d5a403 DynASM/x86: Fix VREG support.
+    7e94e1c4f Merge branch 'master' into v2.1
+    90e65514d Limit path length passed to C library loader.
+    ff1e72ace LJ_GC64: Always snapshot functions for non-base frames.
+    94d4abcca Merge branch 'master' into v2.1
+    e296f56b8 Call error function on rethrow after trace exit.
+    46a6d06dc Merge branch 'master' into v2.1
+    12ab59699 Fix handling of errors during snapshot restore.
+    10ddae75a Merge branch 'master' into v2.1
+    2211f6f96 ARM: Ensure relative GG_State element alignment differently.
+    98682accb Merge branch 'master' into v2.1
+    c4b1e0fea Fix Makefile dependencies.
+    570e758ca Handle old OSX/iOS without getentropy().
+B   60ac12ed6 Merge branch 'master' into v2.1
+    7eb96843f Add FAQ about sandboxing. Minor fixes.
+B!  609779536 Merge branch 'master' into v2.1
+    53f82e6e2 Fix frame traversal for __gc handler frames.   2.0
+    384d6d56f Fix Clang build.
+    18eef08fb Android/ARM: Fix build with recent NDK.
+    e1e3034cf Fix compiler warning.
+    5ef9e4523 Fix OSX build.
+    67654be56 Follow-up fix for iOS build.
+    2e2fb8f6b OSX/iOS: Handle iOS simulator and ARM64 Macs.
+B!  471f8936c Fix pointer check for non-GC64 mode.
+    17fb96d90 Windows: Fix NtAllocateVirtualMemory prototype.
+    2e68e1fc1 Add jit.security().
+B!! ff34b48dd Redesign and harden string interning.               <========= THIS ONE ==========
+g   a44f53acf Use a securely seeded global PRNG for the VM.
+    34e53736c Cleanup some arch defines and fix builds.
+    d333b1a6f ARM: Implement FLOAD from GG_State.
+    8ae5170cd Improve assertions.
+g   8b5505447 Merge branch 'master' into v2.1
+    f5b0fff5a Fix debug.debug() for non-string errors.
+    1a4ff1311 Optimize table length computation with hinting.
+    b2307c8ad Remove pow() splitting and cleanup backends.
+    5655be454 Cleanup math function compilation and fix inconsistencies.
+    c5b8e9168 Merge branch 'master' into v2.1
+    2f3f07882 Fix bytecode register allocation for comparisons.
+    d75e26275 Don't compile math.modf() anymore.
+    03208c816 Fix math.min()/math.max() inconsistencies.
+    1e6e8aaa2 Fix narrowing of unary minus.
+    0eddcbead Cleanup CPU detection and tuning for old CPUs.
+    5bf0da3d7 ARM64: Fix {AHUV}LOAD specialized to nil/false/true.
+    ae20998ff ARM, ARM64, PPC: Fix TSETR fallback.
+    322db0208 Remove unused file.
+    d5e12d517 Merge branch 'master' into v2.1
+    cc4bbec48 FFI: Always fall back to metamethods for cdata length/concat.
+    92c011b51 Windows: Make actual use of internal allocator optimization.
+    99d126882 Merge branch 'master' into v2.1
+    179cf2eb8 Fix overflow check in unpack().
+    f133649ce Merge branch 'master' into v2.1
+    db0b7ec19 Fix Windows make clean.
+    9143e8649 FFI/ARM64: Fix pass-by-value struct calling conventions.
+    fc1c4da3c Merge branch 'master' into v2.1
+    e613105ca Fix write barrier for lua_setupvalue() and debug.setupvalue().
+    0ad60ccbc Make string to number conversions fail on NUL char.
+    d85d6b3c1 Merge branch 'master' into v2.1
+    522d2073d x86/x64: Fix loop realignment.
+g   0c982ad74 Merge branch 'master' into v2.1
