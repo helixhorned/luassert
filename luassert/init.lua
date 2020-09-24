@@ -12,6 +12,8 @@ require('luassert.modifiers')
 --require('luassert.formatters')
 
 -- load default language
+-- NOTE: commenting out -> less frequent occurrence of the bug.
+--  (one in a few 1000x-repeat runs, otherwise a few times each 1000x repeat run)
 require('luassert.languages.en')
 
 return assert
