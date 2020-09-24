@@ -7,20 +7,20 @@
 -- returns; boolean; whether assertion passed
 
 local assert = require('luassert.assert')
-local astate = require ('luassert.state')
+--local astate = require ('luassert.state')
 local util = require ('luassert.util')
 local s = require('say')
-
+--[[
 local function format(val)
   return astate.format_argument(val) or tostring(val)
 end
-
+--]]
 local function set_failure_message(state, message)
   if message ~= nil then
     state.failure_message = message
   end
 end
-
+--[[
 local function unique(state, arguments, level)
   local list = arguments[1]
   local deep
@@ -108,7 +108,7 @@ local function matches(state, arguments, level)
   end
   return ok, retargs
 end
-
+--]]
 local function equals(state, arguments, level)
   local level = (level or 1) + 1
   local argcnt = arguments.n
@@ -119,7 +119,7 @@ local function equals(state, arguments, level)
   set_failure_message(state, arguments[3])
   return result
 end
-
+--[[
 local function same(state, arguments, level)
   local level = (level or 1) + 1
   local argcnt = arguments.n
@@ -254,13 +254,13 @@ local function error_matches(state, arguments, level)
 
   return false, retargs
 end
-
+--]]
 local function is_true(state, arguments, level)
   util.tinsert(arguments, 2, true)
   set_failure_message(state, arguments[3])
   return arguments[1] == arguments[2]
 end
-
+--[[
 local function is_false(state, arguments, level)
   util.tinsert(arguments, 2, false)
   set_failure_message(state, arguments[3])
@@ -297,9 +297,10 @@ local function is_nil(state, arguments, level)      return is_type(state, argume
 local function is_userdata(state, arguments, level) return is_type(state, arguments, level, "userdata") end
 local function is_function(state, arguments, level) return is_type(state, arguments, level, "function") end
 local function is_thread(state, arguments, level)   return is_type(state, arguments, level, "thread")   end
-
-assert:register("modifier", "message", set_message)
+--]]
+--assert:register("modifier", "message", set_message)
 assert:register("assertion", "true", is_true, "assertion.same.positive", "assertion.same.negative")
+--[[
 assert:register("assertion", "false", is_false, "assertion.same.positive", "assertion.same.negative")
 assert:register("assertion", "boolean", is_boolean, "assertion.same.positive", "assertion.same.negative")
 assert:register("assertion", "number", is_number, "assertion.same.positive", "assertion.same.negative")
@@ -310,13 +311,16 @@ assert:register("assertion", "userdata", is_userdata, "assertion.same.positive",
 assert:register("assertion", "function", is_function, "assertion.same.positive", "assertion.same.negative")
 assert:register("assertion", "thread", is_thread, "assertion.same.positive", "assertion.same.negative")
 assert:register("assertion", "returned_arguments", returned_arguments, "assertion.returned_arguments.positive", "assertion.returned_arguments.negative")
-
+--]]
+--[[
 assert:register("assertion", "same", same, "assertion.same.positive", "assertion.same.negative")
 assert:register("assertion", "matches", matches, "assertion.matches.positive", "assertion.matches.negative")
 assert:register("assertion", "match", matches, "assertion.matches.positive", "assertion.matches.negative")
 assert:register("assertion", "near", near, "assertion.near.positive", "assertion.near.negative")
 assert:register("assertion", "equals", equals, "assertion.equals.positive", "assertion.equals.negative")
+--]]
 assert:register("assertion", "equal", equals, "assertion.equals.positive", "assertion.equals.negative")
+--[[
 assert:register("assertion", "unique", unique, "assertion.unique.positive", "assertion.unique.negative")
 assert:register("assertion", "error", has_error, "assertion.error.positive", "assertion.error.negative")
 assert:register("assertion", "errors", has_error, "assertion.error.positive", "assertion.error.negative")
@@ -326,3 +330,4 @@ assert:register("assertion", "matches_error", error_matches, "assertion.error.po
 assert:register("assertion", "match_error", error_matches, "assertion.error.positive", "assertion.error.negative")
 assert:register("assertion", "truthy", truthy, "assertion.truthy.positive", "assertion.truthy.negative")
 assert:register("assertion", "falsy", falsy, "assertion.falsy.positive", "assertion.falsy.negative")
+--]]
