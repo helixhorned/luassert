@@ -29,8 +29,6 @@ ffi.cdef[[
 typedef
 struct { uint64_t v_[16]; }
 fd_set;
-
-struct timeval;
 ]]
 
 local uint32_t = ffi.typeof("uint32_t")

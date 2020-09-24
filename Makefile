@@ -8,7 +8,7 @@ endef
 test: libselect_dummy.so
 	$(do_test)
 
-TEST_LOOP_COUNT ?= 1000
+TEST_LOOP_COUNT ?= 2000
 test-loop: test
 	@echo "INFO: Repeating for a total of $(TEST_LOOP_COUNT) runs."
 	@i=1; while test $$i -lt $(TEST_LOOP_COUNT); do i=$$((i+1)); $(do_test); done

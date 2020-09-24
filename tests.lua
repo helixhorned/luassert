@@ -35,8 +35,9 @@ local jit = require("jit")
 
 local select_dummy = ffi.load("select_dummy")
 ffi.cdef[[
+struct timeval;
 int select_dummy(int nfds, fd_set *readfds, fd_set *writefds,
-                 fd_set *exceptfds, struct timeval *timeout)
+                 fd_set *exceptfds, struct timeval *timeout);
 ]]
 local os = require("os")
 
