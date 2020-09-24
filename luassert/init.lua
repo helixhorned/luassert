@@ -7,9 +7,9 @@ assert._VERSION     = "Luassert 1.8.0"
 -- load basic asserts
 require('luassert.assertions')
 require('luassert.modifiers')
-require('luassert.array')
-require('luassert.matchers')
-require('luassert.formatters')
+--require('luassert.array')
+--require('luassert.matchers')
+--require('luassert.formatters')
 
 -- load default language
 require('luassert.languages.en')
