@@ -4,6 +4,7 @@ d=`pwd`
 LUA_PATH="$d/?/init.lua;$d/?.lua"
 
 export LUA_PATH
+export LD_LIBRARY_PATH="$d"
 
 # With LuaJIT from Ubuntu 20.04 repo,
 #  LuaJIT 2.1.0-beta3 -- Copyright (C) 2005-2017 Mike Pall.

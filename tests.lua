@@ -33,6 +33,11 @@ local ffi = require("ffi")
 local jit = require("jit")
 local C = ffi.C
 
+local select_dummy = ffi.load("select_dummy")
+ffi.cdef[[
+int select_dummy(int nfds, fd_set *readfds, fd_set *writefds,
+                 fd_set *exceptfds, struct timeval *timeout)
+]]
 local os = require("os")
 
 -- ==========
@@ -82,7 +87,7 @@ local os = require("os")
         end
 local ii=0
         repeat
-            local fdReadyCount = C.select(MaxFdToTest + 1, fdSet, nil, nil, nil)
+            local fdReadyCount = select_dummy.select_dummy(MaxFdToTest + 1, fdSet, nil, nil, nil)
             assert.is_equal(fdReadyCount, #fds)
 if (getBitsSetCount() ~= fdReadyCount) then
 -- NOTE: the really odd one is when they differ:
