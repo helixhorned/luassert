@@ -1,15 +1,12 @@
 #!/bin/bash
 
-opts=
-if [ -n "$DUMPDIR" ]; then
-    opts=-jdump
-    if [ ! -d "$DUMPDIR" ]; then
-        echo "ERROR: $DUMPDIR must be a directory." 1>&2
-        exit 100
-    elif [ ! -w "$DUMPDIR" ]; then
-        echo "ERROR: $DUMPDIR must be writable." 1>&2
-        exit 101
-    fi
+opts=-jdump
+if [ ! -d "$DUMPDIR" ]; then
+    echo "ERROR: $DUMPDIR must be a directory." 1>&2
+    exit 100
+elif [ ! -w "$DUMPDIR" ]; then
+    echo "ERROR: $DUMPDIR must be writable." 1>&2
+    exit 101
 fi
 
 d=`pwd`
