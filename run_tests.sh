@@ -15,9 +15,15 @@ if [ $loop_count -gt 1 ]; then
     echo "INFO: Repeating for a total of $loop_count runs."
 fi
 
+opts=
+if [ -n "$DUMP" ]; then
+    opts=-jdump
+fi
+
 # weird bug: happens with -O3, but not with -O2
 i=0;
 while [ $i -lt $loop_count ]; do
     i=$((i+1));
-    luajit -O3 "$d/tests.lua" "$@"
+    # COLORTERM: Make LuaJIT's jit/dump.lua always output ANSI-colored text.
+    COLORTERM=1 luajit -O3 $opts "$d/tests.lua" "$@"
 done
