@@ -113,6 +113,9 @@ if (not (t[1]==10 and t[2]==10 and t[3]==10 and t[4]==10 and t[5]==10)) then
 
     print(t[1], t[2], t[3], t[4], t[5])
 
+    if (not isReallyOdd) then
+        io.stdout:write('This is the dump for "only" the "slightly" odd case!\n')
+    end
     os.exit(isReallyOdd and 124 or 123)
 end
 end
