@@ -1,4 +1,16 @@
-#!/bin/sh
+#!/bin/bash
+
+opts=
+if [ -n "$DUMPDIR" ]; then
+    opts=-jdump
+    if [ ! -d "$DUMPDIR" ]; then
+        echo "ERROR: $DUMPDIR must be a directory." 1>&2
+        exit 100
+    elif [ ! -w "$DUMPDIR" ]; then
+        echo "ERROR: $DUMPDIR must be writable." 1>&2
+        exit 101
+    fi
+fi
 
 d=`pwd`
 LUA_PATH="$d/?/init.lua;$d/?.lua"
@@ -15,15 +27,10 @@ if [ $loop_count -gt 1 ]; then
     echo "INFO: Repeating for a total of $loop_count runs."
 fi
 
-opts=
-if [ -n "$DUMP" ]; then
-    opts=-jdump
-fi
-
 # weird bug: happens with -O3, but not with -O2
 i=0;
 while [ $i -lt $loop_count ]; do
     i=$((i+1));
     # COLORTERM: Make LuaJIT's jit/dump.lua always output ANSI-colored text.
-    COLORTERM=1 luajit -O3 $opts "$d/tests.lua" "$@"
+    COLORTERM=1 luajit -O3 $opts "$d/tests.lua" "$@" > "$DUMPDIR/out.log"
 done

@@ -41,6 +41,24 @@ int select_dummy(int nfds, fd_set *readfds, fd_set *writefds,
 ]]
 local os = require("os")
 
+local io = require("io")
+local table = require("table")
+local tostring=tostring
+
+----------
+
+local function print(...)
+    local t = { ... }
+    local strings = {}
+
+    for i=1,#t do
+        strings[i] = tostring(t[i])
+    end
+
+    local str = table.concat(strings, '\t')
+    io.stderr:write(str..'\n')
+end
+
 -- ==========
 
         local MaxFdToTest = 65
