@@ -1,5 +1,4 @@
 local ffi = require("ffi")
-local C = ffi.C
 
 local bit = require("bit")
 
@@ -8,9 +7,7 @@ local type = type
 
 ----------
 
-local api = {
-    O = { RDONLY = 0 }
-}
+local api = {}
 
 local function checktype(v, _1, t, _2)
     assert(type(v) == t)

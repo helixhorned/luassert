@@ -31,7 +31,6 @@ local ipairs = ipairs
 
 local ffi = require("ffi")
 local jit = require("jit")
---local C = ffi.C
 
 local select_dummy = ffi.load("select_dummy")
 ffi.cdef[[
@@ -65,15 +64,13 @@ end
         local FdsToTest = { 7, 8+1, 16+2, 24+3, 31, 32, 33, 63, 64, MaxFdToTest }
 
         local fdSet = posix.fd_set_t()
-        local fds = {}  -- posix.Fd objects for anchoring
+        local fds = {}
 local curFd=3
         repeat
-            local i = curFd --C.open("/dev/zero", posix.O.RDONLY)
+            local i = curFd
 curFd=curFd+1
-            -- POSIX says: "All functions that open one or more file descriptors shall (...)
-            --  allocate the lowest numbered available (...) file descriptor (...)."
             assert(i >= 0 and i <= FdsToTest[#fds + 1])
-            local fd = i --posix.Fd(i)
+            local fd = i
 
             if (i == FdsToTest[#fds + 1]) then
                 fds[#fds + 1] = fd
@@ -82,9 +79,6 @@ curFd=curFd+1
         until (i == FdsToTest[#FdsToTest])
 
         assert(#fds == #FdsToTest)
-
-        -- Close the file descriptors we do not care about.
-        collectgarbage()
 
         local IsFdTested = {}
         for _, i in ipairs(FdsToTest) do
@@ -123,12 +117,7 @@ ii=ii+1
 
             -- Exercise fdSet:clear()
             fdSet:clear(fds[#fds])
-            -- Remove the last Fd object -- the associated file may be GC'd following that.
             fds[#fds] = nil
         until (#fds == 0)
-
-        -- Close the files which did not happen to have their Fd objects garbage-collected.
-        fds = nil
-        collectgarbage()
 
 -- ==========
