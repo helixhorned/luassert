@@ -1,9 +1,7 @@
 
 .PHONY: test test-loop
 
-define do_test =
-  $(SHELL) ./run_tests.sh
-endef
+do_test := $(SHELL) ./run_tests.sh
 
 test: libselect_dummy.so
 	$(do_test)
