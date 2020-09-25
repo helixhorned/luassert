@@ -48,6 +48,14 @@ while [ $i -lt $loop_count ]; do
             mv "$of" "$gf"
             echo "      A reference -jdump for a good run: '$gf'."
         fi
+
+        # Replace (0x)?[12 times hexbit] as these are most likely addresses.
+        sedEcmds='s/\<(0x)?[0-9a-f]{12}\>/\1LIKELYADDRSS/g'
+        sed -E "$sedEcmds" "$bf" > "$bf.norm"
+        if [ -f "$gf" ]; then
+            sed -E "$sedEcmds" "$gf" > "$gf.norm"
+        fi
+
         exit 124
     fi
 
