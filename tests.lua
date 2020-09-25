@@ -108,8 +108,12 @@ if (getBitsSetCount() ~= fdReadyCount) then
 -- (but can also have equal but < 10)
 local t = {getBitsSetCount(), getBitsSetCount(), getBitsSetCount(), getBitsSetCount(), getBitsSetCount()}
 if (not (t[1]==10 and t[2]==10 and t[3]==10 and t[4]==10 and t[5]==10)) then
+    local v=t[1]
+    local isReallyOdd = (t[2]~=v or t[3]~=v or t[4]~=v or t[5]~=v)
+
     print(t[1], t[2], t[3], t[4], t[5])
-    os.exit(123)
+
+    os.exit(isReallyOdd and 124 or 123)
 end
 end
 ii=ii+1

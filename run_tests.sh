@@ -30,7 +30,26 @@ fi
 # weird bug: happens with -O3, but not with -O2
 i=0;
 while [ $i -lt $loop_count ]; do
-    i=$((i+1));
+    lsb=$((i&1))
+    olsb=$(((i+1)&1))
     # COLORTERM: Make LuaJIT's jit/dump.lua always output ANSI-colored text.
-    COLORTERM=1 luajit -O3 $opts "$d/tests.lua" "$@" > "$DUMPDIR/out.log"
+    f="$DUMPDIR/out$lsb.log"
+    of="$DUMPDIR/out$olsb.log"
+    COLORTERM=1 luajit -O3 $opts "$d/tests.lua" "$@" > "$f"
+
+    if [ $? -eq 124 ]; then
+        bf="$DUMPDIR/bad.log"
+        gf="$DUMPDIR/good.log"
+
+        echo "INFO: encountered 'really odd' case:"
+        mv "$f" "$bf"
+        echo "      Its -jdump output can be found in: '$bf'."
+        if [ -f "$of" ]; then
+            mv "$of" "$gf"
+            echo "      A reference -jdump for a good run: '$gf'."
+        fi
+        exit 124
+    fi
+
+    i=$((i+1));
 done
