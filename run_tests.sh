@@ -1,7 +1,10 @@
 #!/bin/bash
 
 opts=-jdump
-if [ ! -d "$DUMPDIR" ]; then
+if [ -z "$DUMPDIR" ]; then
+    echo "ERROR: must set DUMPDIR."
+    exit 100
+elif [ ! -d "$DUMPDIR" ]; then
     echo "ERROR: $DUMPDIR must be a directory." 1>&2
     exit 100
 elif [ ! -w "$DUMPDIR" ]; then
